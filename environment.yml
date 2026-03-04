@@ -1,0 +1,11 @@
+name: d200-ps3
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10
+  - numpy>=1.23
+  - plotly>=5.18
+  - pip
+  - pip:
+      - -e .

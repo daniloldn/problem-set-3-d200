@@ -19,7 +19,7 @@ def simulate(model):
 
     #run policy 
     for i in range(50):
-        results_dict = model(bandit, T)
+        results_dict = model(bandit, T, seed= 42+i)
         rewards = total_rewards(results_dict["rewards"])
         regrets= regret(bandit, results_dict["arms"])
 
