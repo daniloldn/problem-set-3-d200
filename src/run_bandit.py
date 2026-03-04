@@ -1,6 +1,7 @@
 from src.bandit_env import AdChannelBandit
 from src.policy import run_random
 from src.metrics import total_rewards, regret
+from src.orchestrator import plot_avg_curves, run_experiment
 import plotly.express as px
 import numpy as np
 
@@ -45,6 +46,18 @@ def simulate(model):
     labels={"x": "t", "y": "cumulative regret"}
     )
     fig2.show()
+
+    return None
+
+def simulate_2(models):
+
+    rewards, regrets = run_experiment(models)
+
+    #rewards
+
+    plot_avg_curves(rewards, "Total rewards across models", "Cumaltive Rewards")
+    plot_avg_curves(regrets, "Regret across models","Cumlative Regrets")
+
 
     return None
 
