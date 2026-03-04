@@ -58,3 +58,43 @@ def e_greedy(bandit, T=200, seed=42, epsilon=0.1,):
 
 
     return {"arms": arms, "rewards": rewards}
+
+
+def ucb1(bandit, T=200, seed=42, c=2):
+
+    #setting seed fo reproducabilty 
+    np.random.seed(seed)
+    #storing policy and rewards at each period
+    arms = np.empty(T, dtype=int)
+    rewards = np.empty(T, dtype=int)
+
+    #keeping track of what has happened
+    N = np.zeros(bandit.K, dtype=int)
+    Q = np.zeros(bandit.K, dtype=float)
+
+    #explore each first option
+    for arm in range(bandit.K):
+
+        #pull a
+        r = bandit.pull(arm)
+        N[arm] +=1
+        Q[arm] = r
+
+         #stores results
+        arms[arm] = arm
+        rewards[arm] = r
+
+    for t in range(bandit.K, T):
+
+        ucb = Q + c * np.sqrt(np.log(t)/N)
+        a = int(np.argmax(ucb))
+        r = bandit.pull(a)
+
+        N[a] +=1
+        Q[a] = (Q[a]* (N[a] -1) + r)/N[a]
+
+         #stores results
+        arms[t] = a
+        rewards[t] = r
+
+    return {"arms": arms, "rewards": rewards} 
