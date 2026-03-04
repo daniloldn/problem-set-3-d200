@@ -1,15 +1,29 @@
 import numpy as np 
+import random as rng
 
 
 
-def run_random(bandit, T=200):
+def run_random(bandit, T=200, seed=42):
     """Run a random policy for T rounds.
 
     Returns:
     rewards: array of length T, reward at each round (0 or 1)
     arms_played: array of length T, index of arm chosen each round
 """
-    
+    #setting seed fo reproducabilty 
+    rng.seed(seed)
+    #storing policy and rewards at each period
+    arms = np.empty(T, dtype=int)
+    rewards = np.empty(T, dtype=int)
 
+    #interating through each period
+    for t in range(T):
+        #selects a arm at random then sees what reward it gets
+        a = rng.integers(0, bandit.K)
+        r = bandit.pull(a)
 
-    return None
+        #stores results
+        arms[t] = a
+        rewards[t] = r
+
+    return {"arms": arms, "rewards": rewards}
