@@ -6,4 +6,4 @@ from src.metrics import total_rewards, regret
 
 def main():
 
-    
+    return None
