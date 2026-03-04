@@ -1,8 +1,8 @@
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-from src.metrics import total_rewards, regret
-from src.bandit_env import AdChannelBandit
+from src_1.metrics import total_rewards, regret
+from src_1.bandit_env import AdChannelBandit
 
 
 def run_experiment(models, T=2000, n_runs=50, base_seed=42):

@@ -1,7 +1,7 @@
-from src.bandit_env import AdChannelBandit
-from src.policy import run_random
-from src.metrics import total_rewards, regret
-from src.orchestrator import plot_avg_curves, run_experiment, plot_freq
+from src_1.bandit_env import AdChannelBandit
+from src_1.policy import run_random
+from src_1.metrics import total_rewards, regret
+from src_1.orchestrator import plot_avg_curves, run_experiment, plot_freq
 import plotly.express as px
 import numpy as np
 
