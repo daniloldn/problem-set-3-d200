@@ -98,3 +98,35 @@ def ucb1(bandit, T=200, seed=42, c=2):
         rewards[t] = r
 
     return {"arms": arms, "rewards": rewards} 
+
+
+def tsample(bandit, T=200, seed=42):
+
+    #setting seed fo reproducabilty 
+    np.random.seed(seed)
+    rng = np.random.default_rng(seed)
+
+    #storing policy and rewards at each period
+    arms = np.empty(T, dtype=int)
+    rewards = np.empty(T, dtype=int)
+
+    #storing alpha and beta
+    alpha = np.ones(bandit.K, dtype=float)
+    beta = np.ones(bandit.K, dtype=float)
+
+    for t in range(T):
+        theta = rng.beta(alpha, beta)
+        a = int(np.argmax(theta))
+        r = bandit.pull(a)
+        if r == 1:
+            alpha[a] += 1
+        else:
+            beta[a] +=1
+
+        #stores results
+        arms[t] = a
+        rewards[t] = r
+
+
+    return {"arms": arms, "rewards": rewards} 
+
