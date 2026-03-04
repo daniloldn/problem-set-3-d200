@@ -19,7 +19,7 @@ def run_random(bandit, T=200, seed=42):
     #interating through each period
     for t in range(T):
         #selects a arm at random then sees what reward it gets
-        a = np.random.uniform(0, bandit.K)
+        a = np.random.randint(0, bandit.K)
         r = bandit.pull(a)
 
         #stores results

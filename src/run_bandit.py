@@ -5,7 +5,7 @@ import plotly.express as px
 
 
 
-def main():
+def simulate():
 
     #bandit init
     bandit = AdChannelBandit()
@@ -16,17 +16,24 @@ def main():
     #run policy 
     results_dict = run_random(bandit, T)
 
-    total_rewards = total_rewards(results_dict["rewards"])
-    regret = regret(bandit, results_dict["arms"])
+    rewards = total_rewards(results_dict["rewards"])
+    regrets= regret(bandit, results_dict["arms"])
 
-    #plots
-    fig1 = px.line(total_rewards, title="Random policy: cumulative reward")
+    fig1 = px.line(
+    x=range(len(rewards)),
+    y=rewards,
+    title="Random policy: cumulative reward",
+    labels={"x": "t", "y": "cumulative reward"}
+    )
     fig1.show()
 
-    fig2 = px.line(regret, title="Random policy: cumulative regret")
+    fig2 = px.line(
+    x=range(len(regrets)),
+    y=regrets,
+    title="Random policy: cumulative regret",
+    labels={"x": "t", "y": "cumulative regret"}
+    )
     fig2.show()
 
     return None
 
-if __name__ == "__main__":
-    main()
