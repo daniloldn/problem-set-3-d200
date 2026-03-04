@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "problem-set-3-d200"
+version = "0.1.0"
+description = "Bandit simulation utilities for EconDS D200 problem set 3."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+	"numpy>=1.23",
+	"plotly>=5.18",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

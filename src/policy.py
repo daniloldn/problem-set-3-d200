@@ -11,7 +11,7 @@ def run_random(bandit, T=200, seed=42):
     arms_played: array of length T, index of arm chosen each round
 """
     #setting seed fo reproducabilty 
-    rng.seed(seed)
+    np.random.seed(seed)
     #storing policy and rewards at each period
     arms = np.empty(T, dtype=int)
     rewards = np.empty(T, dtype=int)
@@ -19,7 +19,7 @@ def run_random(bandit, T=200, seed=42):
     #interating through each period
     for t in range(T):
         #selects a arm at random then sees what reward it gets
-        a = rng.integers(0, bandit.K)
+        a = np.random.uniform(0, bandit.K)
         r = bandit.pull(a)
 
         #stores results
